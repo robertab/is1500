@@ -1,0 +1,41 @@
+/* time4io.c
+   
+   Author: Robert Åberg, Sara Ervik
+   Lab3 I/O Programming   
+
+ */
+
+
+#include <stdint.h>
+#include <pic32mx.h>
+#include "mipslab.h"
+
+
+int getsw (void);
+int getbtns (void);
+
+
+int getsw() {
+  while (1) {
+    if (PORTD & 0x80) //SW1
+      return;
+    if (PORTD & 0x100) //SW2
+      return;
+    if (PORTD & 0x200) //SW3
+      return;
+    if (PORTD & 0x400) //SW4
+      return;
+    
+  }
+  return;
+}
+
+
+int getbtns() {
+  PORTD &= 0x7;
+  return;
+}
+
+
+
+  

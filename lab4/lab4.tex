@@ -1,0 +1,145 @@
+% Created 2015-10-17 lör 15:19
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Robert Åberg}
+\date{\today}
+\title{Laboration 4, Logic Gates}
+\hypersetup{
+ pdfauthor={Robert Åberg},
+ pdftitle={Laboration 4, Logic Gates},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 24.5.1 (Org mode 8.3.1)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+
+\section{Decoder}
+\label{sec:orgheadline3}
+
+\subsection{}
+\label{sec:orgheadline1}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./Assignment1.png}
+\caption{\label{fig:orgparagraph1}
+Decoder}
+\end{figure}
+
+
+\subsection{}
+\label{sec:orgheadline2}
+Genom att testa de olika inputs på A1 respektive A0 verifierar jag utdata. Om A0 och A1 har 0 som indata bör därför Y0 vara den enda som har ett som utdata.
+
+
+\section{Multiplexer}
+\label{sec:orgheadline6}
+
+\subsection{}
+\label{sec:orgheadline4}
+\begin{itemize}
+\item MUX utdata är blå för att den "bär" på en bit det är just nu inget som bestämmer vad det ska vara.
+\item Utdata signalen "Equal" är röd eftersom det är något fel. Det kan antingen vara, som i det här fallet, att den inte får någon indata eller den får olika signaler från flera grindar.
+\item Select signalen är svart i det här fallet eftersom den har ett flerbitsvärde. Antingen är någon eller alla bits opsecificerade.
+\end{itemize}
+
+
+\subsection{}
+\label{sec:orgheadline5}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{./assignment2.png}
+\caption{4:1 multiplexer}
+\end{figure}
+Efersom vi kan undersöka om de båda konstruktionerna av multiplexarna kan ge samma värde så kan vi helt enkelt undersöka om både ger samma utdata. 
+
+
+\section{Adder}
+\label{sec:orgheadline9}
+
+\subsection{}
+\label{sec:orgheadline7}
+
+\includegraphics[width=.9\linewidth]{./Assignment3-1.png}
+
+
+\subsection{}
+\label{sec:orgheadline8}
+
+\includegraphics[width=.9\linewidth]{./assignment3-2.png}
+
+
+\section{Latches}
+\label{sec:orgheadline12}
+
+\subsection{}
+\label{sec:orgheadline10}
+\includegraphics[width=.9\linewidth]{./assignment4-1.png}
+
+\begin{itemize}
+\item Eftersom det är ett minne beror det helt på vad Q och Q' hade från början. R indata kan beskrivas som "reset" och S som "set".
+\end{itemize}
+
+
+\subsection{}
+\label{sec:orgheadline11}
+\includegraphics[width=.9\linewidth]{./assignment4-2.png}
+\begin{itemize}
+\item När både CLK och D är 0 händer ingenting (förutsatt att de inte hade något värde från början). När sedan CLK sätts till 1 blir den ena AND grinden 1 och den andra 0, beroende på värdet av D. Q och Q' ändras inte om CLK ändras. CLK bestämmer bara när Q och Q' ska ändras.
+\item När CLK är 1 och D sätts till 1 ändras Q till 1 och Q' till 0.
+\item Fördelen med en D latch är att vi kan bestämma när vi vill ändra värdet på Q och Q'. Detta blir ett problem i SR latchen eftersom S och R både står för när vi ändrar och vad vi ändrar.
+\item Problemet med D latchen är att Q och Q' bara ändras när vi bestämmer det. Dvs, det kan bli konflikter med tajmingen och input samt output inte blir samma.
+\end{itemize}
+
+
+\section{D Flip-Flops and Registers}
+\label{sec:orgheadline17}
+
+\subsection{D flip-flop}
+\label{sec:orgheadline15}
+\subsubsection{}
+\label{sec:orgheadline13}
+\includegraphics[width=.9\linewidth]{./assignment5-1.png}
+\subsubsection{}
+\label{sec:orgheadline14}
+Värdet av Q ändras på klockans "rising-edge". Dvs, när D ändras påverkas bara Q när CLK sätts till 1. Annars bibehåller den bara state.
+
+
+\subsection{}
+\label{sec:orgheadline16}
+\includegraphics[width=.9\linewidth]{./assignment5-2.png}
+
+
+\section{Design of a Synchronous Sequential Circuit.}
+\label{sec:orgheadline21}
+
+\subsection{}
+\label{sec:orgheadline20}
+\subsubsection{}
+\label{sec:orgheadline18}
+
+\includegraphics[width=.9\linewidth]{./assignment6-1.png}
+
+\subsubsection{}
+\label{sec:orgheadline19}
+Alla "Synchronous Sequential Circuit" måste innehålla ett register samt att de ska vara kopplade till samma klocka. Dessutom måste varje cykel passera ett register. I denna lab skulle bara 5.1 och 5.2 vara 
+en "Synchronous Sequential Circuit" eftersom de just måste innehålla ett register. En D latch i sig är ett register så uppfyller den därmed kravet. 
+\end{document}

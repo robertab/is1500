@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- 2015-10-17 lör 14:50 -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laboration 4, Logic Gates</title>
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Robert Åberg">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Laboration 4, Logic Gates</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline3">1. Decoder</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline1">1.1. </a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline2">1.2. </a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline6">2. Multiplexer</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline4">2.1. </a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline5">2.2. </a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline9">3. Adder</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline7">3.1. </a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline8">3.2. </a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline12">4. Latches</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline10">4.1. </a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline11">4.2. </a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline17">5. D Flip-Flops and Registers</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline15">5.1. D flip-flop</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline13">5.1.1. 5.1.1</a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline14">5.1.2. 5.1.2</a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline16">5.2. </a></li>
+</ul>
+</li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline21">6. Design of a Synchronous Sequential Circuit.</a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline20">6.1. </a>
+<ul>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline18">6.1.1. 6.1.1</a></li>
+<li><a href="file:///home/robert/Documents/KTH/IS1500/lab4/lab4.html#orgheadline19">6.1.2. 6.1.2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3"><span class="section-number-2">1</span> Decoder</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1"><span class="section-number-3">1.1</span> </h3>
+<div class="outline-text-3" id="text-1-1">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/Assignment1.png" alt="Assignment1.png">
+</p>
+<p><span class="figure-number">Figure 1:</span> Decoder</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2"><span class="section-number-3">1.2</span> </h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Genom att testa de olika inputs på A1 respektive A0 verifierar jag utdata. Om A0 och A1 har 0 som indata bör därför Y0 vara den enda som har ett som utdata.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline6" class="outline-2">
+<h2 id="orgheadline6"><span class="section-number-2">2</span> Multiplexer</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-orgheadline4" class="outline-3">
+<h3 id="orgheadline4"><span class="section-number-3">2.1</span> </h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>MUX utdata är blå för att den "bär" på en bit det är just nu inget som bestämmer vad det ska vara.</li>
+<li>Utdata signalen "Equal" är röd eftersom det är något fel. Det kan antingen vara, som i det här fallet, att den inte får någon indata eller den får olika signaler från flera grindar.</li>
+<li>Select signalen är svart i det här fallet eftersom den har ett flerbitsvärde. Antingen är någon eller alla bits opsecificerade.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgheadline5" class="outline-3">
+<h3 id="orgheadline5"><span class="section-number-3">2.2</span> </h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<img src="./Laboration 4, Logic Gates_files/assignment2.png" alt="assignment2.png">
+Efersom vi kan undersöka om de båda konstruktionerna av multiplexarna kan ge samma värde så kan vi helt enkelt undersöka om både ger samma utdata. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline9" class="outline-2">
+<h2 id="orgheadline9"><span class="section-number-2">3</span> Adder</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-orgheadline7" class="outline-3">
+<h3 id="orgheadline7"><span class="section-number-3">3.1</span> </h3>
+<div class="outline-text-3" id="text-3-1">
+
+<div class="figure">
+<p><img src="file:///home/robert/Documents/KTH/IS1500/lab4/assignment3-1.png" alt="assignment3-1.png">
+</p>
+<p><span class="figure-number">Figure 2:</span> Full adder.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline8" class="outline-3">
+<h3 id="orgheadline8"><span class="section-number-3">3.2</span> </h3>
+<div class="outline-text-3" id="text-3-2">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/assignment3-2.png" alt="assignment3-2.png">
+</p>
+<p><span class="figure-number">Figure 3:</span> 4-bit ripple-carry adder</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline12" class="outline-2">
+<h2 id="orgheadline12"><span class="section-number-2">4</span> Latches</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-orgheadline10" class="outline-3">
+<h3 id="orgheadline10"><span class="section-number-3">4.1</span> </h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<img src="./Laboration 4, Logic Gates_files/assignment4-1.png" alt="assignment4-1.png">
+Eftersom det är ett minne beror det helt på vad Q och Q' hade från början. R indata kan beskrivas som "reset" och S som "set".
+</p>
+</div>
+</div>
+<div id="outline-container-orgheadline11" class="outline-3">
+<h3 id="orgheadline11"><span class="section-number-3">4.2</span> </h3>
+<div class="outline-text-3" id="text-4-2">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/assignment4-2.png" alt="assignment4-2.png">
+</p>
+<p><span class="figure-number">Figure 4:</span> D latch.</p>
+</div>
+<ul class="org-ul">
+<li>När både CLK och D är 0 händer ingenting (förutsatt att de inte hade något värde från början). När sedan CLK sätts till 1 blir den ena AND grinden 1 och den andra 0, beroende på värdet av D. Q och Q' ändras inte om CLK ändras. CLK bestämmer bara när Q och Q' ska ändras.</li>
+<li>När CLK är 1 och D sätts till 1 ändras Q till 1 och Q' till 0.</li>
+<li>Fördelen med en D latch är att vi kan bestämma när vi vill ändra värdet på Q och Q'. Detta blir ett problem i SR latchen eftersom S och R både står för när vi ändrar och vad vi ändrar.</li>
+<li>Problemet med D latchen är att Q och Q' bara ändras när vi bestämmer det. Dvs, det kan bli konflikter med tajmingen och input samt output inte blir samma.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline17" class="outline-2">
+<h2 id="orgheadline17"><span class="section-number-2">5</span> D Flip-Flops and Registers</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-orgheadline15" class="outline-3">
+<h3 id="orgheadline15"><span class="section-number-3">5.1</span> D flip-flop</h3>
+<div class="outline-text-3" id="text-5-1">
+</div><div id="outline-container-orgheadline13" class="outline-4">
+<h4 id="orgheadline13"><span class="section-number-4">5.1.1</span> 5.1.1</h4>
+<div class="outline-text-4" id="text-5-1-1">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/assignment5-1.png" alt="assignment5-1.png">
+</p>
+<p><span class="figure-number">Figure 5:</span> D Flip-Flop using two D latches.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline14" class="outline-4">
+<h4 id="orgheadline14"><span class="section-number-4">5.1.2</span> 5.1.2</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<p>
+Värdet av Q ändras på klockans "rising-edge". Dvs, när D ändras påverkas bara Q när CLK sätts till 1. Annars bibehåller den bara state.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline16" class="outline-3">
+<h3 id="orgheadline16"><span class="section-number-3">5.2</span> </h3>
+<div class="outline-text-3" id="text-5-2">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/assignment5-2.png" alt="assignment5-2.png">
+</p>
+<p><span class="figure-number">Figure 6:</span> 4-bit register</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline21" class="outline-2">
+<h2 id="orgheadline21"><span class="section-number-2">6</span> Design of a Synchronous Sequential Circuit.</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-orgheadline20" class="outline-3">
+<h3 id="orgheadline20"><span class="section-number-3">6.1</span> </h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-orgheadline18" class="outline-4">
+<h4 id="orgheadline18"><span class="section-number-4">6.1.1</span> 6.1.1</h4>
+<div class="outline-text-4" id="text-6-1-1">
+
+<div class="figure">
+<p><img src="./Laboration 4, Logic Gates_files/assignment6-1.png" alt="assignment6-1.png">
+</p>
+<p><span class="figure-number">Figure 7:</span> Synchronous Sequential Circuit.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgheadline19" class="outline-4">
+<h4 id="orgheadline19"><span class="section-number-4">6.1.2</span> 6.1.2</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<p>
+Alla "Synchronous Sequential Circuit" måste innehålla ett register samt att de ska vara kopplade till samma klocka. Dessutom måste varje cykel passera ett register. I denna lab skulle bara 5.1 och 5.2 vara 
+en "Synchronous Sequential Circuit" eftersom de just måste innehålla ett register. En D latch i sig är ett register så uppfyller den därmed kravet. 
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Robert Åberg</p>
+<p class="date">Created: 2015-10-17 lör 14:50</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+
+
+</body></html>
